@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports — HCC</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a class="logo" href="../index.html">
+      <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="logo-text">HCC<span class="logo-accent">Score</span></span>
+    </a>
+    <button class="sidebar-toggle" id="sidebarToggle">&#8249;</button>
+  </div>
+  <nav class="nav-menu">
+    <a href="../index.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="patients.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Patients</span></a>
+    <a href="scoring.html"    class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Risk Scoring</span></a>
+    <a href="icd-mapper.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">ICD-10 Mapper</span></a>
+    <a href="reports.html"    class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="nav-label">Reports</span></a>
+    <a href="settings.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Settings</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card"><div class="user-avatar">DR</div><div class="user-info"><div class="user-name">Dr. Ramesh</div><div class="user-role">Risk Analyst</div></div></div>
+  </div>
+</aside>
+
+<main class="main-content" id="mainContent">
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title">Reports</h1>
+      <p class="page-subtitle">Population-level HCC risk analytics and summaries</p>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-ghost" onclick="window.print()">&#128438; Print / Export</button>
+    </div>
+  </header>
+
+  <!-- SUMMARY STATS -->
+  <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px" id="reportKpis"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Risk Level Distribution</h2></div>
+      <canvas id="riskDistChart" height="220"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">RAF Score Percentiles</h2></div>
+      <canvas id="percentileChart" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-header"><h2 class="card-title">Most Common HCC Categories</h2></div>
+    <canvas id="hccFreqChart" height="160"></canvas>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h2 class="card-title">Patient Summary Export</h2></div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Name</th><th>MRN</th><th>Age</th><th>RAF</th><th>Risk</th><th>HCC Count</th><th>Est. Cost</th><th>Alerts</th></tr></thead>
+        <tbody id="reportTable"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<div class="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="../js/data.js"></script>
+<script>
+const GC = { color:'#e8eaf0', grid:'rgba(255,255,255,0.05)', font:{family:"'DM Sans',sans-serif",size:11} };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const pts = loadPatients();
+  renderKpis(pts);
+  renderRiskDist(pts);
+  renderPercentile(pts);
+  renderHccFreq(pts);
+  renderTable(pts);
+  document.getElementById('sidebarToggle').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    document.getElementById('mainContent').classList.toggle('expanded');
+  });
+});
+
+function renderKpis(pts) {
+  const total  = pts.length;
+  const high   = pts.filter(p=>p.risk==='High').length;
+  const avgRaf = (pts.reduce((s,p)=>s+p.raf,0)/total).toFixed(2);
+  const totalCost = formatCurrency(pts.reduce((s,p)=>s+estimateCost(p.raf),0));
+  document.getElementById('reportKpis').innerHTML = `
+    <div class="kpi-card kpi-blue"><div class="kpi-label">Total Patients</div><div class="kpi-value">${total}</div></div>
+    <div class="kpi-card kpi-red"><div class="kpi-label">High Risk</div><div class="kpi-value">${high}</div><div class="kpi-change warn">${((high/total)*100).toFixed(0)}% of population</div></div>
+    <div class="kpi-card kpi-amber"><div class="kpi-label">Avg RAF Score</div><div class="kpi-value">${avgRaf}</div></div>
+    <div class="kpi-card kpi-green"><div class="kpi-label">Est. Total Cost</div><div class="kpi-value" style="font-size:22px">${totalCost}</div></div>
+  `;
+}
+
+function renderRiskDist(pts) {
+  const h = pts.filter(p=>p.risk==='High').length;
+  const m = pts.filter(p=>p.risk==='Moderate').length;
+  const l = pts.filter(p=>p.risk==='Low').length;
+  new Chart(document.getElementById('riskDistChart'), {
+    type:'doughnut',
+    data:{ labels:['High','Moderate','Low'], datasets:[{ data:[h,m,l], backgroundColor:['#ef4444','#f59e0b','#22c55e'], borderWidth:0 }] },
+    options:{ responsive:true, cutout:'60%', plugins:{ legend:{ position:'bottom', labels:{ color:GC.color, font:GC.font, padding:14 } } } }
+  });
+}
+
+function renderPercentile(pts) {
+  const sorted = [...pts].sort((a,b)=>a.raf-b.raf).map(p=>p.raf);
+  const labels = sorted.map((_,i)=>`P${Math.round((i/(sorted.length-1))*100)}`);
+  new Chart(document.getElementById('percentileChart'), {
+    type:'line',
+    data:{ labels, datasets:[{ data:sorted, borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,0.08)', fill:true, tension:0.4, pointRadius:3, pointBackgroundColor:'#3b82f6' }] },
+    options:{ responsive:true, plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:GC.grid},ticks:{color:GC.color,font:GC.font}},y:{grid:{color:GC.grid},ticks:{color:GC.color,font:GC.font}}} }
+  });
+}
+
+function renderHccFreq(pts) {
+  const freq = {};
+  pts.forEach(p => p.hccs.forEach(h => { freq[h] = (freq[h]||0)+1; }));
+  const sorted = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  new Chart(document.getElementById('hccFreqChart'), {
+    type:'bar',
+    data:{ labels:sorted.map(([k])=>k), datasets:[{ data:sorted.map(([,v])=>v), backgroundColor:'rgba(20,184,166,0.6)', borderColor:'#14b8a6', borderWidth:1, borderRadius:4 }] },
+    options:{ responsive:true, plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:GC.grid},ticks:{color:GC.color,font:GC.font}},y:{grid:{color:GC.grid},ticks:{color:GC.color,font:GC.font,stepSize:1}}} }
+  });
+}
+
+function renderTable(pts) {
+  const bf = r=>r==='High'?'badge-high':r==='Moderate'?'badge-mod':'badge-low';
+  document.getElementById('reportTable').innerHTML = pts.map(p=>`
+    <tr>
+      <td style="font-weight:500">${p.name}</td>
+      <td class="mono" style="font-size:11px;color:var(--text-muted)">${p.mrn}</td>
+      <td>${p.age}</td>
+      <td style="font-family:monospace;font-weight:600;color:var(--blue)">${p.raf.toFixed(2)}</td>
+      <td><span class="badge ${bf(p.risk)}">${p.risk}</span></td>
+      <td>${p.hccs.length}</td>
+      <td style="color:var(--green)">${formatCurrency(estimateCost(p.raf))}</td>
+      <td>${p.alerts.length}</td>
+    </tr>`).join('');
+}
+</script>
+</body>
+</html>

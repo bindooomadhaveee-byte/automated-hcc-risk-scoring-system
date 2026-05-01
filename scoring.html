@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Risk Scoring — HCC</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a class="logo" href="../index.html">
+      <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="logo-text">HCC<span class="logo-accent">Score</span></span>
+    </a>
+    <button class="sidebar-toggle" id="sidebarToggle">&#8249;</button>
+  </div>
+  <nav class="nav-menu">
+    <a href="../index.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="patients.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Patients</span></a>
+    <a href="scoring.html"    class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Risk Scoring</span></a>
+    <a href="icd-mapper.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">ICD-10 Mapper</span></a>
+    <a href="reports.html"    class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="nav-label">Reports</span></a>
+    <a href="settings.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Settings</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card"><div class="user-avatar">DR</div><div class="user-info"><div class="user-name">Dr. Ramesh</div><div class="user-role">Risk Analyst</div></div></div>
+  </div>
+</aside>
+
+<main class="main-content" id="mainContent">
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title">Risk Scoring</h1>
+      <p class="page-subtitle">Detailed HCC RAF calculation and condition analysis</p>
+    </div>
+    <div class="topbar-right">
+      <select class="select-filter" id="ptSelector" onchange="loadPatient()">
+        <option value="">— Select Patient —</option>
+      </select>
+    </div>
+  </header>
+
+  <div id="noSelect" style="text-align:center;padding:60px 20px;color:var(--text-muted)">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="opacity:.25;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>Select a patient from the dropdown to view their risk score breakdown</p>
+  </div>
+
+  <div id="scoreContent" style="display:none">
+    <!-- PATIENT HEADER -->
+    <div class="card" style="margin-bottom:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div id="ptAvatar" style="width:50px;height:50px;border-radius:50%;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--blue)"></div>
+          <div>
+            <div id="ptNameBig" style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700"></div>
+            <div id="ptMetaSub" style="font-size:12px;color:var(--text-muted);margin-top:3px"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <span id="riskBadgeBig" class="badge"></span>
+          <button class="btn-ghost" onclick="printReport()">&#128438; Print Report</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORE BREAKDOWN -->
+    <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:18px">
+      <div class="kpi-card kpi-blue">
+        <div class="kpi-label">Total RAF Score</div>
+        <div class="kpi-value" id="sc-raf">—</div>
+        <div class="kpi-change">Risk Adjustment Factor</div>
+      </div>
+      <div class="kpi-card kpi-amber">
+        <div class="kpi-label">Demographic</div>
+        <div class="kpi-value" id="sc-demo">—</div>
+        <div class="kpi-change">Age + gender weight</div>
+      </div>
+      <div class="kpi-card" style="border-top:2px solid var(--teal)">
+        <div class="kpi-label">Chronic Disease</div>
+        <div class="kpi-value" id="sc-chronic" style="color:var(--teal)">—</div>
+        <div class="kpi-change">Sum of HCC weights</div>
+      </div>
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Est. Annual Cost</div>
+        <div class="kpi-value" id="sc-cost" style="font-size:22px">—</div>
+        <div class="kpi-change">Projected spend</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+      <!-- RAF Composition Chart -->
+      <div class="card">
+        <div class="card-header"><h2 class="card-title">RAF Composition</h2></div>
+        <canvas id="compChart" height="200"></canvas>
+      </div>
+      <!-- HCC Weight Breakdown -->
+      <div class="card">
+        <div class="card-header"><h2 class="card-title">HCC Weight Breakdown</h2></div>
+        <canvas id="hccWeightChart" height="200"></canvas>
+      </div>
+    </div>
+
+    <!-- DIAGNOSIS TABLE -->
+    <div class="card" style="margin-bottom:18px">
+      <div class="card-header">
+        <h2 class="card-title">Mapped Diagnoses</h2>
+        <div class="card-actions">
+          <input class="search-input" style="width:160px" id="newIcdInput" placeholder="Add ICD-10..." />
+          <button class="btn-primary" onclick="addDiagCode()">Map Code</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>ICD-10</th><th>Condition</th><th>HCC Category</th><th>RAF Weight</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody id="diagBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Coding Gaps & Alerts</h2></div>
+      <div id="alertsBody"></div>
+    </div>
+  </div>
+</main>
+
+<div class="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="../js/data.js"></script>
+<script>
+let currentPt = null;
+let compChart, hccChart2;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const pts = loadPatients();
+  const sel = document.getElementById('ptSelector');
+  pts.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = p.name + ' (MRN: ' + p.mrn + ')';
+    sel.appendChild(opt);
+  });
+  // pre-select from URL param
+  const params = new URLSearchParams(location.search);
+  const pid = params.get('id');
+  if (pid) { sel.value = pid; loadPatient(); }
+
+  document.getElementById('sidebarToggle').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    document.getElementById('mainContent').classList.toggle('expanded');
+  });
+});
+
+function loadPatient() {
+  const id = document.getElementById('ptSelector').value;
+  if (!id) { document.getElementById('noSelect').style.display='block'; document.getElementById('scoreContent').style.display='none'; return; }
+  currentPt = getPatientById(id);
+  if (!currentPt) return;
+  document.getElementById('noSelect').style.display='none';
+  document.getElementById('scoreContent').style.display='block';
+  renderScore();
+}
+
+function renderScore() {
+  const p = currentPt;
+  const initials = p.name.split(' ').map(n=>n[0]).join('').slice(0,2);
+  document.getElementById('ptAvatar').textContent = initials;
+  document.getElementById('ptNameBig').textContent = p.name;
+  document.getElementById('ptMetaSub').textContent = `MRN: ${p.mrn} · ${p.gender==='M'?'Male':'Female'}, ${p.age} yrs · ${p.plan} · Last scored: ${p.lastScored}`;
+
+  const badgeCls = p.risk==='High'?'badge-high':p.risk==='Moderate'?'badge-mod':'badge-low';
+  const b = document.getElementById('riskBadgeBig');
+  b.className = 'badge ' + badgeCls; b.textContent = p.risk + ' Risk';
+
+  document.getElementById('sc-raf').textContent     = p.raf.toFixed(2);
+  document.getElementById('sc-demo').textContent    = p.demoScore.toFixed(2);
+  document.getElementById('sc-chronic').textContent = p.chronicScore.toFixed(2);
+  document.getElementById('sc-cost').textContent    = formatCurrency(estimateCost(p.raf));
+
+  renderCompChart(p);
+  renderHccWeightChart(p);
+  renderDiags(p);
+  renderAlerts(p);
+}
+
+function renderCompChart(p) {
+  const ctx = document.getElementById('compChart');
+  if (compChart) compChart.destroy();
+  compChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Demographic','Chronic Disease','Interaction'],
+      datasets: [{
+        data: [p.demoScore, p.chronicScore, p.interactionScore],
+        backgroundColor: ['#f59e0b','#3b82f6','#14b8a6'],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true, cutout:'65%',
+      plugins: {
+        legend: { position:'bottom', labels:{ color:'#6b7280', font:{size:11}, boxWidth:10, padding:14 } }
+      }
+    }
+  });
+}
+
+function renderHccWeightChart(p) {
+  const ctx = document.getElementById('hccWeightChart');
+  if (hccChart2) hccChart2.destroy();
+  const labels = p.hccs.map(h => h);
+  const vals   = p.hccs.map(h => HCC_CATEGORIES[h]?.raf || 0);
+  hccChart2 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data: vals, backgroundColor: 'rgba(59,130,246,0.6)', borderColor:'#3b82f6', borderWidth:1, borderRadius:5 }]
+    },
+    options: {
+      responsive:true,
+      plugins:{ legend:{display:false} },
+      scales:{
+        x:{ grid:{color:'rgba(255,255,255,.05)'}, ticks:{color:'#6b7280',font:{size:10}} },
+        y:{ grid:{color:'rgba(255,255,255,.05)'}, ticks:{color:'#6b7280',font:{size:10}} }
+      }
+    }
+  });
+}
+
+function renderDiags(p) {
+  document.getElementById('diagBody').innerHTML = p.diagnoses.map((d,i) => {
+    const cat = HCC_CATEGORIES[d.hcc];
+    return `<tr>
+      <td class="mono" style="font-size:11px;color:var(--blue)">${d.icd}</td>
+      <td style="font-size:13px">${cat ? cat.desc : d.hcc}</td>
+      <td class="mono" style="font-size:11px">${d.hcc}</td>
+      <td style="font-weight:500">${cat ? cat.raf.toFixed(3) : '—'}</td>
+      <td><span class="badge ${d.status==='Confirmed'?'badge-blue':'badge-pending'}" style="font-size:10px">${d.status}</span></td>
+      <td style="font-size:12px;color:var(--text-muted)">${d.date || '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderAlerts(p) {
+  document.getElementById('alertsBody').innerHTML = p.alerts.length
+    ? p.alerts.map(a => `<div class="alert-item"><div class="alert-dot"></div><span>${a}</span></div>`).join('')
+    : `<p style="color:var(--text-muted);font-size:13px">No alerts — coding appears complete for this patient.</p>`;
+}
+
+function addDiagCode() {
+  const raw = document.getElementById('newIcdInput').value.trim().toUpperCase();
+  if (!raw || !currentPt) { showToast('Enter an ICD-10 code'); return; }
+  const hcc = mapICD(raw);
+  if (!hcc) { showToast('⚠ ICD-10 code not mapped to any HCC category'); return; }
+  currentPt.diagnoses.push({ icd:raw, hcc, status:'Confirmed', date: new Date().toISOString().slice(0,10) });
+  if (!currentPt.hccs.includes(hcc)) currentPt.hccs.push(hcc);
+  currentPt.chronicScore = calcRAF(currentPt.hccs);
+  currentPt.raf = +(currentPt.demoScore + currentPt.chronicScore + currentPt.interactionScore).toFixed(2);
+  currentPt.risk = getRiskLevel(currentPt.raf);
+  const pts = loadPatients().map(p => p.id === currentPt.id ? currentPt : p);
+  savePatients(pts);
+  document.getElementById('newIcdInput').value = '';
+  renderScore();
+  showToast('✓ ' + raw + ' → ' + hcc + ' mapped');
+}
+
+function printReport() {
+  window.print();
+}
+</script>
+</body>
+</html>

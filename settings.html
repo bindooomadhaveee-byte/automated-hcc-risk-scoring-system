@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — HCC</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a class="logo" href="../index.html">
+      <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="logo-text">HCC<span class="logo-accent">Score</span></span>
+    </a>
+    <button class="sidebar-toggle" id="sidebarToggle">&#8249;</button>
+  </div>
+  <nav class="nav-menu">
+    <a href="../index.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="patients.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Patients</span></a>
+    <a href="scoring.html"    class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Risk Scoring</span></a>
+    <a href="icd-mapper.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">ICD-10 Mapper</span></a>
+    <a href="reports.html"    class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="nav-label">Reports</span></a>
+    <a href="settings.html"   class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Settings</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card"><div class="user-avatar">DR</div><div class="user-info"><div class="user-name">Dr. Ramesh</div><div class="user-role">Risk Analyst</div></div></div>
+  </div>
+</aside>
+
+<main class="main-content" id="mainContent">
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title">Settings</h1>
+      <p class="page-subtitle">System configuration and scoring model preferences</p>
+    </div>
+  </header>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+    <!-- USER PROFILE -->
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">User Profile</h2></div>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" id="s-uname" value="Dr. Ramesh Kumar" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Role</label>
+        <input class="form-input" id="s-role" value="Risk Analyst" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Organization</label>
+        <input class="form-input" id="s-org" value="HCC Analytics Group" />
+      </div>
+      <button class="btn-primary" onclick="saveSetting('profile')">Save Profile</button>
+    </div>
+
+    <!-- SCORING CONFIG -->
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Scoring Model</h2></div>
+      <div class="form-group">
+        <label class="form-label">CMS-HCC Model Version</label>
+        <select class="form-select" id="s-model">
+          <option selected>CMS-HCC v28 (2024)</option>
+          <option>CMS-HCC v24 (Legacy)</option>
+          <option>CMS-HCC ESRD</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Plan Year</label>
+        <select class="form-select" id="s-planyear">
+          <option>2025</option><option>2024</option><option>2023</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Per-member Cost Multiplier ($)</label>
+        <input class="form-input" id="s-multiplier" type="number" value="9800" />
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Used for annual cost estimation (RAF × multiplier)</div>
+      </div>
+      <button class="btn-primary" onclick="saveSetting('model')">Save Model Config</button>
+    </div>
+
+    <!-- RAF THRESHOLDS -->
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Risk Thresholds</h2></div>
+      <div class="form-group">
+        <label class="form-label">High Risk — minimum RAF score</label>
+        <input class="form-input" id="s-high" type="number" step="0.1" value="2.0" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Moderate Risk — minimum RAF score</label>
+        <input class="form-input" id="s-mod" type="number" step="0.1" value="1.2" />
+      </div>
+      <div style="background:var(--bg-3);border-radius:8px;padding:12px;font-size:12px;color:var(--text-muted);line-height:1.7">
+        <strong style="color:var(--text)">Current thresholds:</strong><br>
+        RAF ≥ 2.0 → High Risk<br>
+        RAF 1.2 – 1.99 → Moderate Risk<br>
+        RAF &lt; 1.2 → Low Risk
+      </div>
+      <button class="btn-primary" style="margin-top:12px" onclick="saveSetting('thresholds')">Save Thresholds</button>
+    </div>
+
+    <!-- DATA MANAGEMENT -->
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Data Management</h2></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:var(--bg-3);border-radius:8px;padding:12px;font-size:13px">
+          <div style="font-weight:500;margin-bottom:4px">Patient Database</div>
+          <div style="color:var(--text-muted);font-size:12px" id="dbInfo">Loading...</div>
+        </div>
+        <button class="btn-ghost" onclick="exportData()">&#11015; Export All Data (JSON)</button>
+        <button class="btn-ghost" onclick="document.getElementById('importFile').click()">&#11014; Import Data (JSON)</button>
+        <input type="file" id="importFile" style="display:none" accept=".json" onchange="importData(event)" />
+        <button class="btn-danger" onclick="resetData()">&#9888; Reset to Sample Data</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast"></div>
+<script src="../js/data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pts = loadPatients();
+  document.getElementById('dbInfo').textContent =
+    `${pts.length} patients · ${pts.reduce((s,p)=>s+p.diagnoses.length,0)} diagnosis records`;
+
+  document.getElementById('sidebarToggle').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    document.getElementById('mainContent').classList.toggle('expanded');
+  });
+});
+
+function saveSetting(type) {
+  showToast('✓ ' + type.charAt(0).toUpperCase() + type.slice(1) + ' settings saved');
+}
+
+function exportData() {
+  const pts  = loadPatients();
+  const blob = new Blob([JSON.stringify(pts, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'hcc_patients_export.json'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('✓ Data exported');
+}
+
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (Array.isArray(data)) {
+        savePatients(data);
+        showToast('✓ ' + data.length + ' patients imported');
+        document.getElementById('dbInfo').textContent = `${data.length} patients loaded`;
+      } else { showToast('⚠ Invalid file format'); }
+    } catch { showToast('⚠ Could not parse JSON file'); }
+  };
+  reader.readAsText(file);
+}
+
+function resetData() {
+  if (!confirm('Reset all data to sample patients? This cannot be undone.')) return;
+  localStorage.removeItem('hcc_patients');
+  showToast('✓ Data reset to sample patients');
+  setTimeout(() => location.reload(), 1200);
+}
+</script>
+</body>
+</html>

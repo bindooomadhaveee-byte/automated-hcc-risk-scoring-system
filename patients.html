@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patients — HCC Risk Scoring</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a class="logo" href="../index.html">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="logo-text">HCC<span class="logo-accent">Score</span></span>
+    </a>
+    <button class="sidebar-toggle" id="sidebarToggle">&#8249;</button>
+  </div>
+  <nav class="nav-menu">
+    <a href="../index.html"  class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Dashboard</span></a>
+    <a href="patients.html"  class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Patients</span></a>
+    <a href="scoring.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Risk Scoring</span></a>
+    <a href="icd-mapper.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">ICD-10 Mapper</span></a>
+    <a href="reports.html"   class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="nav-label">Reports</span></a>
+    <a href="settings.html"  class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg><span class="nav-label">Settings</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">DR</div>
+      <div class="user-info"><div class="user-name">Dr. Ramesh</div><div class="user-role">Risk Analyst</div></div>
+    </div>
+  </div>
+</aside>
+
+<main class="main-content" id="mainContent">
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title">Patients</h1>
+      <p class="page-subtitle">Manage and enroll patients for HCC risk scoring</p>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-primary" onclick="showAddForm()">+ Add Patient</button>
+    </div>
+  </header>
+
+  <!-- ADD PATIENT FORM -->
+  <div class="card mb-16" id="addForm" style="display:none;margin-bottom:20px">
+    <div class="card-header">
+      <h2 class="card-title">New Patient Enrollment</h2>
+      <button class="btn-ghost" onclick="hideAddForm()">Cancel</button>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Full Name *</label>
+        <input class="form-input" id="f-name" placeholder="e.g. John Smith" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">MRN *</label>
+        <input class="form-input" id="f-mrn" placeholder="e.g. 01234" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Date of Birth *</label>
+        <input class="form-input" id="f-dob" type="date" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gender *</label>
+        <select class="form-select" id="f-gender">
+          <option value="">Select gender</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Insurance Plan</label>
+        <input class="form-input" id="f-plan" value="Medicare Advantage" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Plan Year</label>
+        <input class="form-input" id="f-year" value="2025" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">ICD-10 Codes (comma separated)</label>
+      <input class="form-input" id="f-icds" placeholder="e.g. E11.9, I50.9, J44.1" />
+    </div>
+    <button class="btn-primary" onclick="addPatient()">Enroll Patient & Calculate RAF</button>
+  </div>
+
+  <!-- PATIENT LIST -->
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">All Patients (<span id="ptCount">0</span>)</h2>
+      <div class="card-actions">
+        <input class="search-input" id="searchPt" placeholder="Search..." oninput="renderPtList()" />
+        <select class="select-filter" id="riskFilterPt" onchange="renderPtList()">
+          <option value="">All</option>
+          <option value="High">High Risk</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Patient</th><th>MRN</th><th>DOB</th><th>Gender</th>
+            <th>RAF</th><th>HCC Count</th><th>Risk</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="ptListBody"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<div class="toast"></div>
+<script src="../js/data.js"></script>
+<script>
+let pts = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+  pts = loadPatients();
+  renderPtList();
+  setupSidebarToggle();
+});
+
+function setupSidebarToggle() {
+  const btn = document.getElementById('sidebarToggle');
+  const sb  = document.getElementById('sidebar');
+  const mc  = document.getElementById('mainContent');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    sb.classList.toggle('collapsed');
+    mc.classList.toggle('expanded');
+    btn.textContent = sb.classList.contains('collapsed') ? '›' : '‹';
+  });
+}
+
+function showAddForm() {
+  document.getElementById('addForm').style.display = 'block';
+}
+function hideAddForm() {
+  document.getElementById('addForm').style.display = 'none';
+}
+
+function addPatient() {
+  const name   = document.getElementById('f-name').value.trim();
+  const mrn    = document.getElementById('f-mrn').value.trim();
+  const dobVal = document.getElementById('f-dob').value;
+  const gender = document.getElementById('f-gender').value;
+  const plan   = document.getElementById('f-plan').value.trim();
+  const year   = document.getElementById('f-year').value.trim();
+  const icdRaw = document.getElementById('f-icds').value.trim();
+
+  if (!name || !mrn || !dobVal || !gender) {
+    showToast('⚠ Please fill all required fields'); return;
+  }
+
+  const dob   = new Date(dobVal);
+  const today = new Date();
+  const age   = Math.floor((today - dob) / (1000*60*60*24*365.25));
+
+  // Map ICD codes to HCC
+  const icdList = icdRaw ? icdRaw.split(',').map(s=>s.trim().toUpperCase()).filter(Boolean) : [];
+  const hccs    = [...new Set(icdList.map(c => mapICD(c)).filter(Boolean))];
+  const diags   = icdList.map(icd => {
+    const hcc = mapICD(icd);
+    return hcc ? { icd, hcc, status:'Confirmed', date: new Date().toISOString().slice(0,10) } : null;
+  }).filter(Boolean);
+
+  const demoScore      = getDemoRaf(age, gender);
+  const chronicScore   = calcRAF(hccs);
+  const interactionScore = Math.min(0.3, hccs.length * 0.04);
+  const raf            = +(demoScore + chronicScore + interactionScore).toFixed(2);
+  const risk           = getRiskLevel(raf);
+
+  const newPt = {
+    id: 'P' + Date.now(),
+    mrn, name,
+    dob: `${String(dob.getMonth()+1).padStart(2,'0')}/${String(dob.getDate()).padStart(2,'0')}/${dob.getFullYear()}`,
+    age, gender, plan, planYear: parseInt(year),
+    lastScored: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
+    raf, demoScore, chronicScore, interactionScore, risk, hccs, diagnoses: diags,
+    alerts: risk === 'High' ? ['Newly enrolled high-risk patient — review recommended'] : [],
+    trend: [Math.max(0, raf-0.3), Math.max(0,raf-0.22), Math.max(0,raf-0.14), Math.max(0,raf-0.08), Math.max(0,raf-0.03), raf]
+  };
+
+  pts.push(newPt);
+  savePatients(pts);
+  renderPtList();
+  hideAddForm();
+  showToast('✓ Patient enrolled — RAF: ' + raf.toFixed(2));
+}
+
+function renderPtList() {
+  const q    = (document.getElementById('searchPt')?.value || '').toLowerCase();
+  const risk = document.getElementById('riskFilterPt')?.value || '';
+  const filtered = pts.filter(p =>
+    (!q    || p.name.toLowerCase().includes(q) || p.mrn.includes(q)) &&
+    (!risk || p.risk === risk)
+  );
+  document.getElementById('ptCount').textContent = pts.length;
+  const tbody = document.getElementById('ptListBody');
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:28px;color:var(--text-muted)">No patients found</td></tr>';
+    return;
+  }
+  const badgeFn = r => r==='High'?'badge-high':r==='Moderate'?'badge-mod':'badge-low';
+  tbody.innerHTML = filtered.map(p => `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:30px;height:30px;border-radius:50%;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue)">
+            ${p.name.split(' ').map(n=>n[0]).join('').slice(0,2)}
+          </div>
+          <div><div style="font-weight:500">${p.name}</div></div>
+        </div>
+      </td>
+      <td class="mono" style="font-size:11px;color:var(--text-muted)">${p.mrn}</td>
+      <td style="font-size:12px">${p.dob}</td>
+      <td>${p.gender==='M'?'Male':'Female'}</td>
+      <td style="font-weight:500;color:var(--blue);font-family:var(--font-mono,monospace)">${p.raf.toFixed(2)}</td>
+      <td>${p.hccs.length}</td>
+      <td><span class="badge ${badgeFn(p.risk)}">${p.risk}</span></td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn-sm" onclick="window.location.href='scoring.html?id=${p.id}'">Score</button>
+          <button class="btn-danger" onclick="deletePatient('${p.id}')">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function deletePatient(id) {
+  if (!confirm('Remove this patient?')) return;
+  pts = pts.filter(p => p.id !== id);
+  savePatients(pts);
+  renderPtList();
+  showToast('Patient removed');
+}
+</script>
+</body>
+</html>

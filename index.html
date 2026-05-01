@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HCC Risk Scoring System</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">HCC<span class="logo-accent">Score</span></span>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle" title="Collapse sidebar">&#8249;</button>
+  </div>
+
+  <nav class="nav-menu">
+    <a href="index.html" class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="pages/patients.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="nav-label">Patients</span>
+    </a>
+    <a href="pages/scoring.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-label">Risk Scoring</span>
+    </a>
+    <a href="pages/icd-mapper.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="nav-label">ICD-10 Mapper</span>
+    </a>
+    <a href="pages/reports.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-label">Reports</span>
+    </a>
+    <a href="pages/settings.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg>
+      <span class="nav-label">Settings</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">DR</div>
+      <div class="user-info">
+        <div class="user-name">Dr. Ramesh</div>
+        <div class="user-role">Risk Analyst</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="mainContent">
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title">Dashboard</h1>
+      <p class="page-subtitle">HCC Risk Scoring Overview — Plan Year 2025</p>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-ghost" onclick="refreshData()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><polyline points="23 4 23 10 17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Refresh
+      </button>
+      <button class="btn-primary" onclick="window.location.href='pages/patients.html'">
+        + Add Patient
+      </button>
+    </div>
+  </header>
+
+  <!-- KPI CARDS -->
+  <section class="kpi-grid">
+    <div class="kpi-card kpi-blue">
+      <div class="kpi-label">Total Patients</div>
+      <div class="kpi-value" id="totalPatients">0</div>
+      <div class="kpi-change up">+12 this month</div>
+    </div>
+    <div class="kpi-card kpi-red">
+      <div class="kpi-label">High Risk</div>
+      <div class="kpi-value" id="highRiskCount">0</div>
+      <div class="kpi-change">Needs immediate review</div>
+    </div>
+    <div class="kpi-card kpi-amber">
+      <div class="kpi-label">Avg RAF Score</div>
+      <div class="kpi-value" id="avgRaf">0.00</div>
+      <div class="kpi-change up">+0.08 vs last quarter</div>
+    </div>
+    <div class="kpi-card kpi-green">
+      <div class="kpi-label">Coding Gaps</div>
+      <div class="kpi-value" id="codingGaps">0</div>
+      <div class="kpi-change warn">Requires attention</div>
+    </div>
+  </section>
+
+  <!-- MAIN GRID -->
+  <section class="dashboard-grid">
+
+    <!-- Patient Risk Table -->
+    <div class="card card-wide">
+      <div class="card-header">
+        <h2 class="card-title">Patient Risk Queue</h2>
+        <div class="card-actions">
+          <input class="search-input" type="text" id="searchBox" placeholder="Search patient..." oninput="filterTable()" />
+          <select class="select-filter" id="riskFilter" onchange="filterTable()">
+            <option value="">All Risk Levels</option>
+            <option value="High">High</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="patientTable">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>MRN</th>
+              <th>Age</th>
+              <th>RAF Score</th>
+              <th>HCC Count</th>
+              <th>Risk Level</th>
+              <th>Last Scored</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="patientTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RAF Score Distribution Chart -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">RAF Distribution</h2>
+      </div>
+      <canvas id="rafChart" height="220"></canvas>
+    </div>
+
+    <!-- HCC Category Breakdown -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Top HCC Categories</h2>
+      </div>
+      <canvas id="hccChart" height="220"></canvas>
+    </div>
+
+    <!-- Risk Trend -->
+    <div class="card card-wide">
+      <div class="card-header">
+        <h2 class="card-title">Monthly RAF Trend</h2>
+        <div class="legend">
+          <span class="legend-dot" style="background:#3b82f6"></span> Average RAF
+          <span class="legend-dot" style="background:#ef4444;margin-left:12px"></span> High Risk Avg
+        </div>
+      </div>
+      <canvas id="trendChart" height="180"></canvas>
+    </div>
+
+  </section>
+</main>
+
+<!-- PATIENT DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Patient Details</h2>
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
